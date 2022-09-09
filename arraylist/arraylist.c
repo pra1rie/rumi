@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "array_list.h"
+#include "arraylist.h"
 
 #define ERROR_EXIT(...) { fprintf(stderr, __VA_ARGS__); exit(1); }
 
