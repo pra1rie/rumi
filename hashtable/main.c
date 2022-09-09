@@ -6,8 +6,8 @@ int
 main(void)
 {
 	Hash *hash = hashNew(32);
-	hashSet(hash, "Salim", "feo");
-	hashSet(hash, "Yuuka", "burro");
+	hashSet(hash, "Salim", "burro");
+	hashSet(hash, "Yuuka", "feo");
 
 	printf("Salim %s\n", (char*) hashGet(hash, "Salim"));
 	printf("Yuuka %s\n", (char*) hashGet(hash, "Yuuka"));
