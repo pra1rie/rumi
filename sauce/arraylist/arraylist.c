@@ -42,8 +42,8 @@ listPop(ArrayList *list, size_t index)
 
 	void *item = list->buffer[index];
 
-	for (size_t i = list->size; i > index; --i) {
-		list->buffer[i-1] = list->buffer[i];
+	for (size_t i = index; i < list->size; ++i) {
+		list->buffer[i] = list->buffer[i+1];
 	}
 
 	return item;

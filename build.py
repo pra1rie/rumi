@@ -4,7 +4,11 @@ import os
 
 name = 'a.out'
 path = 'sauce'
-files = ['arraylist', 'hashtable', 'main']
+files = [
+    'arraylist/arraylist',
+    'hashtable/hashtable',
+    'main',
+]
 
 out = ''
 compiler = 'gcc'

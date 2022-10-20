@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "hashtable.h"
-#include "arraylist.h"
+#include "hashtable/hashtable.h"
+#include "arraylist/arraylist.h"
 
 int
 main(void)
