@@ -7,14 +7,9 @@
 size_t
 hashHash(Hash *hash, char *key)
 {
-	// kinda scuffed ngl
 	size_t val = 0;
-	size_t a = 1;
-	for (size_t i = 0; i < strlen(key); ++i) {
-		a *= key[i] / 2 + 666;
-		val += key[i] + a;
-	}
-
+	for (size_t i = 0; i < strlen(key); ++i)
+		val += key[i] * 24;
 	return val % hash->size;
 }
 
