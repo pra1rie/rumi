@@ -6,7 +6,7 @@ int
 main(void)
 {
 	Hash *hash = hashNew(32);
-	ArrayList *list = listNew(sizeof(int), 10);
+	List *list = listNew(sizeof(int), 10);
 
 	hashSet(hash, "Salim", "burro");
 	hashSet(hash, "Yuuka", "feo");

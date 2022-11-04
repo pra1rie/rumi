@@ -6,7 +6,7 @@
 #define ERROR_EXIT(...) { fprintf(stderr, __VA_ARGS__); exit(1); }
 
 static void
-listResize(ArrayList *list)
+listResize(List *list)
 {
 	if (list->size < list->alloc_size) return;
 
@@ -14,10 +14,10 @@ listResize(ArrayList *list)
 	list->buffer = realloc(list->buffer, list->alloc_size);
 }
 
-ArrayList*
+List*
 listNew(size_t item_size, size_t alloc_size)
 {
-	ArrayList *list = malloc(sizeof(ArrayList));
+	List *list = malloc(sizeof(List));
 	list->item_size = item_size;
 	list->alloc_size = alloc_size;
 	list->size = 0;
@@ -27,14 +27,14 @@ listNew(size_t item_size, size_t alloc_size)
 }
 
 void
-listFree(ArrayList *list)
+listFree(List *list)
 {
 	free(list->buffer);
 	free(list);
 }
 
 void*
-listPop(ArrayList *list, size_t index)
+listPop(List *list, size_t index)
 {
 	if (index >= list->size)
 		ERROR_EXIT("POP_ERROR: Index out of range: %ld\n", index);
@@ -50,7 +50,7 @@ listPop(ArrayList *list, size_t index)
 }
 
 void*
-listPopBack(ArrayList *list)
+listPopBack(List *list)
 {
 	if (list->size == 0)
 		ERROR_EXIT("POP_ERROR: Cannot pop from empty list\n");
@@ -59,7 +59,7 @@ listPopBack(ArrayList *list)
 }
 
 void
-listAdd(ArrayList *list, size_t index, void *item)
+listAdd(List *list, size_t index, void *item)
 {
 	if (index > list->size)
 		ERROR_EXIT("ADD_ERROR: Index out of range: %ld\n", index);
@@ -74,7 +74,7 @@ listAdd(ArrayList *list, size_t index, void *item)
 }
 
 void
-listAddBack(ArrayList *list, void *item)
+listAddBack(List *list, void *item)
 {
 	++list->size;
 	listResize(list);
@@ -82,7 +82,7 @@ listAddBack(ArrayList *list, void *item)
 }
 
 void*
-listGet(ArrayList *list, size_t index)
+listGet(List *list, size_t index)
 {
 	if (index >= list->size)
 		ERROR_EXIT("GET_ERROR: Index out of range: %ld\n", index);
@@ -90,7 +90,7 @@ listGet(ArrayList *list, size_t index)
 }
 
 void
-listSet(ArrayList *list, size_t index, void *item)
+listSet(List *list, size_t index, void *item)
 {
 	if (index >= list->size)
 		ERROR_EXIT("SET_ERROR: Index out of range: %ld\n", index);
