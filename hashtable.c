@@ -5,7 +5,7 @@
 #include "hashtable.h"
 
 size_t
-hashHash(Hash *hash, char *key)
+hashSimpleHash(Hash *hash, char *key)
 {
 	size_t val = 0;
 	for (size_t i = 0; i < strlen(key); ++i)
@@ -29,6 +29,7 @@ hashNew(size_t size)
 	Hash *hash = malloc(sizeof(Hash));
 	hash->list = calloc(sizeof(HashBranch), size);
 	hash->size = size;
+	hash->hash = &hashSimpleHash;
 
 	for (size_t i = 0; i < size; ++i) {
 		hash->list[i] = (HashBranch) {
@@ -63,7 +64,7 @@ hashFree(Hash *hash)
 void*
 hashGet(Hash *hash, char *key)
 {
-	size_t pos = hashHash(hash, key);
+	size_t pos = hash->hash(hash, key);
 
 	if (strcmp(key, hash->list[pos].key) == 0)
 		return hash->list[pos].value;
@@ -81,7 +82,7 @@ hashGet(Hash *hash, char *key)
 void
 hashSet(Hash *hash, char *key, void *value)
 {
-	size_t pos = hashHash(hash, key);
+	size_t pos = hash->hash(hash, key);
 
 	if (strlen(hash->list[pos].key) == 0) {
 		hash->list[pos] = (HashBranch) {

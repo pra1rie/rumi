@@ -3,7 +3,8 @@
 
 #include <stdlib.h>
 
-typedef struct array_list {
+typedef struct array_list
+{
 	size_t size;
 	size_t alloc_size;
 	size_t item_size;

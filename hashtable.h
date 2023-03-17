@@ -3,18 +3,22 @@
 
 #include <stdlib.h>
 
-typedef struct hashtable_branch {
+typedef struct hashtable_branch
+{
 	char *key;
 	void *value;
 	struct hashtable_branch *next;
 } HashBranch;
 
-typedef struct hashtable {
+typedef struct hashtable
+{
 	size_t size;
 	HashBranch *list;
+	size_t (*hash)(struct hashtable*, char*);
 } Hash;
 
-size_t hashHash(Hash *hash, char *key);
+size_t hashSimpleHash(Hash *hash, char *key);
+
 HashBranch *hashBranch(char *key, void *value);
 Hash *hashNew(size_t size);
 void hashFree(Hash *hash);
