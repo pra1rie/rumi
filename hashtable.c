@@ -8,8 +8,10 @@ size_t
 hashSimpleHash(Hash *hash, char *key)
 {
 	size_t val = 0;
-	for (size_t i = 0; i < strlen(key); ++i)
-		val += key[i] * 24;
+	size_t len = strlen(key);
+	for (size_t i = 0; i < len; ++i) {
+		val += key[i] * len;
+	}
 	return val % hash->size;
 }
 
